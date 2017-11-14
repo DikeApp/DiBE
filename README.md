@@ -1,6 +1,9 @@
 # DiBE
 Diké Back-End
 
-Written with Python 3.6.
+Server Side Programming: Python 3.4.
+Database: Relational Database - MySQL
+App Hosting - Heroku
+Python Frameworks - Django
 
 Contributed by Hoang Nguyen, Duc Nguyen, Cuong Lam. 
