@@ -25,7 +25,7 @@ SECRET_KEY = '-=_33n1%6rxzrksu8ljv7kloh6v=6#7=879o!j0i7^^fjhblp1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dikeapp.herokuapp.com']
 
 
 # Application definition
