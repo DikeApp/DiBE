@@ -1,1 +1,1 @@
-web: gunicorn dikeapp.wsgi --log-file -
+web: gunicorn dike.wsgi --log-file -
