@@ -61,6 +61,6 @@ class UserLogin(APIView):
         try:
             user = User.objects.get(username = username, password=password)
         except User.DoesNotExist:
-            return Response({"statu": "failed"}, status=HTTP_401_UNAUTHORIZED)
+            return Response({"status": "failed"}, status=HTTP_401_UNAUTHORIZED)
 
-        return Response({"statu": "successed"})
+        return Response({"status": "successed"})
