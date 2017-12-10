@@ -30,7 +30,7 @@ class UserDetail(APIView):
     """
     Retrieve, update or delete a user instance.
     """
-    def get_object(self, pk):
+    def __get_object(self, pk):
         try:
             return User.objects.get(pk=pk)
         except User.DoesNotExist:
