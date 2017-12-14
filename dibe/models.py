@@ -82,7 +82,8 @@ class DjangoAdminLog(models.Model):
     object_repr = models.CharField(max_length=200)
     action_flag = models.SmallIntegerField()
     change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    content_type = models.ForeignKey('DjangoContentType',
+                                     models.DO_NOTHING, blank=True, null=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
@@ -147,10 +148,6 @@ class ShareRide(models.Model):
         managed = False
         db_table = 'share_ride'
 
-from django.conf import settings
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from rest_framework.authtoken.models import Token
 
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)

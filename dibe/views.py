@@ -1,22 +1,17 @@
-from django.shortcuts import render
-
 # Create your views here.
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.status import HTTP_401_UNAUTHORIZED
-from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate
 from .models import User
 from .serializers import UserSerializer
 from django.http import Http404
 
+
 class UserList(APIView):
     def get(sefl, request):
         users = User.objects.all()
-        serializer = UserSerializer(users, many = True)
+        serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
@@ -25,6 +20,7 @@ class UserList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserDetail(APIView):
     """
@@ -54,12 +50,13 @@ class UserDetail(APIView):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class UserLogin(APIView):
     def post(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
         try:
-            user = User.objects.get(username = username, password=password)
+            user = User.objects.get(username=username, password=password)
         except User.DoesNotExist:
             return Response({"status": "failed"}, status=HTTP_401_UNAUTHORIZED)
 

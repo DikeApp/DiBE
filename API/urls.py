@@ -13,9 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib import admin
-from rest_framework.urlpatterns import format_suffix_patterns
 from dibe import views
 
 urlpatterns = [
@@ -23,11 +22,4 @@ urlpatterns = [
     url(r'^users/$', views.UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
     url(r'^login', views.UserLogin.as_view()),
-
 ]
-# admin.autodiscover()
-#
-#     urlpatterns = patterns('',
-#     url(r'^admin/', include(admin.site.urls)),
-#     url(r'^users/', views.UserList.as_view()),
-#     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),)
