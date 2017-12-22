@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import sys
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -84,21 +84,31 @@ WSGI_APPLICATION = 'API.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'heroku_ea5acf653c50bc0',
+#         'USER': 'b7a0e1fb4c5a74',
+#         'PASSWORD': '53016f33',
+#         'HOST': 'us-cdbr-iron-east-05.cleardb.net',   # Or an IP Address that your DB is hosted on
+#         'PORT': '3306',
+#     }
+# }
+#
+#
+# if 'test' in sys.argv:
+#     DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'heroku_ea5acf653c50bc0',
-        'USER': 'b7a0e1fb4c5a74',
-        'PASSWORD': '53016f33',
-        'HOST': 'us-cdbr-iron-east-05.cleardb.net',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
-
-if 'test' in sys.argv:
-    DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
-
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
