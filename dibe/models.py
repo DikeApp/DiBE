@@ -157,5 +157,4 @@ class User(models.Model):
     host_ids = models.CharField(max_length=300)
 
     class Meta:
-        managed = False
         db_table = 'user'
