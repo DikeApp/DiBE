@@ -151,10 +151,10 @@ class ShareRide(models.Model):
 
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=50)
+    username = models.CharField(max_length=300)
     password = models.CharField(max_length=50)
-    # share_ids = models.CharField(max_length=300)
-    # host_ids = models.CharField(max_length=300)
+    share_ids = models.CharField(max_length=300, default='')
+    host_ids = models.CharField(max_length=300, default='')
 
     class Meta:
         db_table = 'user'
