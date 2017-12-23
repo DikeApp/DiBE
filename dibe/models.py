@@ -156,5 +156,8 @@ class User(models.Model):
     share_ids = models.CharField(max_length=300, default='')
     host_ids = models.CharField(max_length=300, default='')
 
+    def __str__(self):
+        return self.username
+
     class Meta:
         db_table = 'user'

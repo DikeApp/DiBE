@@ -14,10 +14,6 @@ class UserSerializer(serializers.ModelSerializer):
                )
     password = serializers.CharField(min_length=8)
 
-    # share_ids = serializers.CharField(default=None)
-
-    # host_ids = serializers.CharField(default=None)
-
     class Meta:
         model = User
         fields = "__all__"
