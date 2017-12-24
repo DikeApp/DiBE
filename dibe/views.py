@@ -3,13 +3,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.status import HTTP_401_UNAUTHORIZED
-from .models import User
-from .serializers import UserSerializer
+from .models import User, ShareRide, HostRide
+from .serializers import UserSerializer, ShareRideSerializer
+from .serializers import HostRideSerializer
 from django.http import Http404
 
 
 class UserList(APIView):
-    def get(sefl, request):
+    def get(self, request):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
@@ -20,6 +21,20 @@ class UserList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ShareRideList(APIView):
+    def get(self, request):
+        shareRides = ShareRide.objects.all()
+        serializer = ShareRideSerializer(shareRides, many=True)
+        return Response(serializer.data)
+
+
+class HostRideList(APIView):
+    def get(self, request):
+        hostRides = HostRide.objects.all()
+        serializer = HostRideSerializer(hostRides, many=True)
+        return Response(serializer.data)
 
 
 class UserDetail(APIView):

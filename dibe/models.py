@@ -131,7 +131,6 @@ class HostRide(models.Model):
     host_ride_note = models.TextField()
 
     class Meta:
-        managed = False
         db_table = 'host_ride'
 
 
@@ -145,7 +144,6 @@ class ShareRide(models.Model):
     share_ride_note = models.TextField()
 
     class Meta:
-        managed = False
         db_table = 'share_ride'
 
 
