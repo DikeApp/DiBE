@@ -9,6 +9,13 @@ from .serializers import HostRideSerializer
 from django.http import Http404
 
 
+def _get_object(pk):
+    try:
+        return User.objects.get(pk=pk)
+    except User.DoesNotExist:
+        raise Http404
+
+
 class UserList(APIView):
     def get(self, request):
         users = User.objects.all()
@@ -29,6 +36,18 @@ class ShareRideList(APIView):
         serializer = ShareRideSerializer(shareRides, many=True)
         return Response(serializer.data)
 
+    def post(self, request):
+        shareRide = request.data
+        serializer = ShareRideSerializer(data=shareRide)
+        if serializer.is_valid():
+            serializer.save()
+            user_id = shareRide["share_ride_user_id"]
+            user = _get_object(user_id)
+            user.share_count += 1
+            user.save(update_fields=["share_count"])
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class HostRideList(APIView):
     def get(self, request):
@@ -36,17 +55,23 @@ class HostRideList(APIView):
         serializer = HostRideSerializer(hostRides, many=True)
         return Response(serializer.data)
 
+    def post(self, request):
+        hostRide = request.data
+        serializer = HostRideSerializer(data=hostRide)
+        if serializer.is_valid():
+            serializer.save()
+            user_id = hostRide["host_ride_user_id"]
+            user = _get_object(user_id)
+            user.host_count += 1
+            user.save(update_fields=["host_count"])
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserDetail(APIView):
     """
     Retrieve, update or delete a user instance.
     """
-    def _get_object(self, pk):
-        try:
-            return User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            raise Http404
-
     def get(self, request, pk, format=None):
         user = self._get_object(pk)
         user = UserSerializer(user)
