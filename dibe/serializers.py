@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, ShareRide, HostRide
 from rest_framework.validators import UniqueValidator
 
 
@@ -16,4 +16,18 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
+        fields = "__all__"
+
+
+class ShareRideSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ShareRide
+        fields = "__all__"
+
+
+class HostRideSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = HostRide
         fields = "__all__"

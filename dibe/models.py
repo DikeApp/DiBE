@@ -125,13 +125,13 @@ class HostRide(models.Model):
     host_ride_id = models.AutoField(primary_key=True)
     host_ride_from = models.CharField(max_length=50)
     host_ride_to = models.CharField(max_length=50)
-    host_ride_date = models.DateField()
-    host_ride_time = models.TimeField()
+    host_ride_date = models.CharField(max_length=300)
+    host_ride_time = models.CharField(max_length=300)
     host_ride_price = models.DecimalField(max_digits=10, decimal_places=2)
-    host_ride_note = models.TextField()
+    host_ride_note = models.TextField(default='')
+    host_ride_user_id = models.CharField(max_length=300)
 
     class Meta:
-        managed = False
         db_table = 'host_ride'
 
 
@@ -139,13 +139,13 @@ class ShareRide(models.Model):
     share_ride_id = models.AutoField(primary_key=True)
     share_ride_from = models.CharField(max_length=50)
     share_ride_to = models.CharField(max_length=50)
-    share_ride_date = models.DateField()
-    share_ride_time = models.TimeField()
+    share_ride_date = models.CharField(max_length=300)
+    share_ride_time = models.CharField(max_length=300)
     share_ride_price = models.DecimalField(max_digits=10, decimal_places=2)
-    share_ride_note = models.TextField()
+    share_ride_note = models.TextField(default='')
+    share_ride_user_id = models.CharField(max_length=300)
 
     class Meta:
-        managed = False
         db_table = 'share_ride'
 
 
@@ -155,6 +155,8 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     share_ids = models.CharField(max_length=300, default='')
     host_ids = models.CharField(max_length=300, default='')
+    share_count = models.IntegerField(default=0)
+    host_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.username

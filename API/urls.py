@@ -21,5 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/$', views.UserList.as_view(), name='user-list'),
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
+    url(r'^share/$', views.ShareRideList().as_view(), name='share-ride-list'),
+    url(r'^host/$', views.HostRideList().as_view(), name='host-ride-list'),
     url(r'^login', views.UserLogin.as_view()),
 ]
