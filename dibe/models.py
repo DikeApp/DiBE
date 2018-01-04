@@ -127,7 +127,7 @@ class HostRide(models.Model):
     host_ride_to = models.CharField(max_length=50)
     host_ride_date = models.CharField(max_length=300)
     host_ride_time = models.CharField(max_length=300)
-    host_ride_price = models.DecimalField(max_digits=10, decimal_places=2)
+    host_ride_price = models.CharField(max_length=300)
     host_ride_note = models.TextField(default='')
     host_ride_user_id = models.CharField(max_length=300)
 
@@ -141,7 +141,7 @@ class ShareRide(models.Model):
     share_ride_to = models.CharField(max_length=50)
     share_ride_date = models.CharField(max_length=300)
     share_ride_time = models.CharField(max_length=300)
-    share_ride_price = models.DecimalField(max_digits=10, decimal_places=2)
+    share_ride_price = models.CharField(max_length=300)
     share_ride_note = models.TextField(default='')
     share_ride_user_id = models.CharField(max_length=300)
 
