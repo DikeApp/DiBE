@@ -40,11 +40,11 @@ class ShareRideList(APIView):
         shareRide = request.data
         serializer = ShareRideSerializer(data=shareRide)
         if serializer.is_valid():
-            serializer.save()
             user_id = shareRide["share_ride_user_id"]
             user = _get_object(user_id)
             user.share_count += 1
             user.save(update_fields=["share_count"])
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -59,11 +59,11 @@ class HostRideList(APIView):
         hostRide = request.data
         serializer = HostRideSerializer(data=hostRide)
         if serializer.is_valid():
-            serializer.save()
             user_id = hostRide["host_ride_user_id"]
             user = _get_object(user_id)
             user.host_count += 1
             user.save(update_fields=["host_count"])
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
