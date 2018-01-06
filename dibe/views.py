@@ -97,7 +97,9 @@ class UserLogin(APIView):
         password = request.data.get("password")
         try:
             user = User.objects.get(username=username, password=password)
+            serializer = UserSerializer(user)
         except User.DoesNotExist:
-            return Response({"status": "failed"}, status=HTTP_401_UNAUTHORIZED)
+            return Response({"status": "failed"},
+                            status=status.HTTP_401_UNAUTHORIZED)
 
-        return Response({"status": "successed"})
+        return Response(serializer.data, status=status.HTTP_200_OK)
