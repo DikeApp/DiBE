@@ -27,5 +27,5 @@ urlpatterns = [
     url(r'^share/$', views.ShareRideList().as_view(), name='share-ride-list'),
     url(r'^host/$', views.HostRideList().as_view(), name='host-ride-list'),
     url(r'^login', views.UserLogin.as_view()),
-    url(r'^', schema_view),
+    url(r'^api-doc', schema_view),
 ]
