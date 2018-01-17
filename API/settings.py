@@ -99,6 +99,10 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+ON_HEROKU = os.environ.get('ON_HEROKU')
+if ON_HEROKU:
+    DATABASES['default'] = dj_database_url.config()
 #
 #
 # if 'test' in sys.argv:
