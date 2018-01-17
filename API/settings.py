@@ -95,18 +95,21 @@ DATABASES = {
         'NAME': 'heroku_ea5acf653c50bc0',
         'USER': 'b7a0e1fb4c5a74',
         'PASSWORD': '53016f33',
-        'HOST': 'us-cdbr-iron-east-05.cleardb.net',   # Or an IP Address that your DB is hosted on
+        'HOST': 'us-cdbr-iron-east-05.cleardb.net',
+        # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
 
-ON_HEROKU = os.environ.get('ON_HEROKU')
-if ON_HEROKU:
-    DATABASES['default'] = dj_database_url.config()
-#
-#
-# if 'test' in sys.argv:
-#     DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
+# ON_HEROKU = os.environ.get('ON_HEROKU')
+# if ON_HEROKU:
+DATABASES['default'] = dj_database_url.config()
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
+# }
 
 if 'test' in sys.argv:
     DATABASES = {
