@@ -2,7 +2,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.status import HTTP_401_UNAUTHORIZED
 from .models import User, ShareRide, HostRide
 from .serializers import UserSerializer, ShareRideSerializer
 from .serializers import HostRideSerializer
@@ -18,11 +17,17 @@ def _get_object(pk):
 
 class UserList(APIView):
     def get(self, request):
+        """
+        Get all users info
+        """
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
+        """
+        Creat new user
+        """
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -32,11 +37,17 @@ class UserList(APIView):
 
 class ShareRideList(APIView):
     def get(self, request):
+        """
+        Get all share rides
+        """
         shareRides = ShareRide.objects.all()
         serializer = ShareRideSerializer(shareRides, many=True)
         return Response(serializer.data)
 
     def post(self, request):
+        """
+        Create new share ride
+        """
         shareRide = request.data
         serializer = ShareRideSerializer(data=shareRide)
         if serializer.is_valid():
@@ -51,11 +62,17 @@ class ShareRideList(APIView):
 
 class HostRideList(APIView):
     def get(self, request):
+        """
+        Get all host rides
+        """
         hostRides = HostRide.objects.all()
         serializer = HostRideSerializer(hostRides, many=True)
         return Response(serializer.data)
 
     def post(self, request):
+        """
+        Create new host ride
+        """
         hostRide = request.data
         serializer = HostRideSerializer(data=hostRide)
         if serializer.is_valid():
@@ -69,15 +86,18 @@ class HostRideList(APIView):
 
 
 class UserDetail(APIView):
-    """
-    Retrieve, update or delete a user instance.
-    """
     def get(self, request, pk, format=None):
+        """
+        Get user info
+        """
         user = self._get_object(pk)
         user = UserSerializer(user)
         return Response(user.data)
 
     def put(self, request, pk, format=None):
+        """
+        Update user info
+        """
         user = self._get_object(pk)
         serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
@@ -86,6 +106,9 @@ class UserDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
+        """
+        Delete user
+        """
         user = self._get_object(pk)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

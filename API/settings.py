@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'dibe',
     'rest_framework.authtoken',
+    'rest_framework_swagger',
 ]
 # REST_FRAMEWORK = {
 #     'DEFAULT_AUTHENTICATION_CLASSES': (

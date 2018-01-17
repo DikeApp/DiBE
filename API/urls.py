@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from dibe import views
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='API DOCUMENT')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,4 +27,5 @@ urlpatterns = [
     url(r'^share/$', views.ShareRideList().as_view(), name='share-ride-list'),
     url(r'^host/$', views.HostRideList().as_view(), name='host-ride-list'),
     url(r'^login', views.UserLogin.as_view()),
+    url(r'^', schema_view),
 ]
