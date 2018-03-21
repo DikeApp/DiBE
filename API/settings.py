@@ -103,22 +103,20 @@ DATABASES = {
 
 # ON_HEROKU = os.environ.get('ON_HEROKU')
 # if ON_HEROKU:
-DATABASES['default'] = dj_database_url.config()
-
+# DATABASES['default'] = dj_database_url.config()
+# COMPRESS_OFFLINE = os.environ.get('COMPRESS_OFFLINE', True)
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         default=config('DATABASE_URL')
-#     )
+#     'default': dj_database_url.config()
 # }
-
-if 'test' in sys.argv:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(os.path.dirname(__file__), 'test.db'),
-            'TEST_NAME': os.path.join(os.path.dirname(__file__), 'test.db'),
-        }
-    }
+#
+# if 'test' in sys.argv:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(os.path.dirname(__file__), 'test.db'),
+#             'TEST_NAME': os.path.join(os.path.dirname(__file__), 'test.db'),
+#         }
+#     }
 
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)
