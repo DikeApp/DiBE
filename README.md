@@ -7,4 +7,5 @@ App Hosting - Heroku
 Python Frameworks - Django
 CI Test - SemaphoreCI
 
-Contributed by Hoang Nguyen, Duc Nguyen, Cuong Lam.
+Semaphore Badge:
+[![Build Status](https://semaphoreci.com/api/v1/dikeordie/dibe/branches/master/badge.svg)](https://semaphoreci.com/dikeordie/dibe)
