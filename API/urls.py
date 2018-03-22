@@ -22,6 +22,7 @@ schema_view = get_swagger_view(title='API DOCUMENT')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^signup/', views.UserSignUp.as_view(), name='sign-up'),
     url(r'^users/$', views.UserList.as_view(), name='user-list'),
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
     url(r'^share/$', views.ShareRideList().as_view(), name='share-ride-list'),

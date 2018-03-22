@@ -6,13 +6,14 @@ from django.shortcuts import reverse
 class UserListViewTest(APITestCase):
     def setUp(self):
         self.user_list_url = reverse('user-list')
+        self.user_sign_up_url = reverse('sign-up')
 
     def test_create_user(self):
         data = {
             'username': 'create_user',
             'password': 'password',
         }
-        response = self.client.post(self.user_list_url, data)
+        response = self.client.post(self.user_sign_up_url, data)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(response.status_code, 201)
 
@@ -21,7 +22,7 @@ class UserListViewTest(APITestCase):
             'username': 'get_user',
             'password': 'password',
         }
-        self.client.post(self.user_list_url, data)
+        self.client.post(self.user_sign_up_url, data)
         response = self.client.get(self.user_list_url, format='json')
         self.assertEqual(len(response.data), 1)
 

@@ -24,6 +24,8 @@ class UserList(APIView):
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
+
+class UserSignUp(APIView):
     def post(self, request, format=None):
         """
         Creat new user
