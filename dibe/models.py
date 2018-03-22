@@ -8,6 +8,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class AuthGroup(models.Model):
@@ -149,10 +150,19 @@ class ShareRide(models.Model):
         db_table = 'share_ride'
 
 
+def validate_min_length(value):
+    if len(value) < 8:
+        raise ValidationError(
+            "min length is 8"
+        )
+
+
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=300, default='')
-    password = models.CharField(max_length=50, default='')
+    username = models.CharField(max_length=300,
+                                validators=[validate_min_length])
+    password = models.CharField(max_length=50,
+                                validators=[validate_min_length])
     share_ids = models.CharField(max_length=300, default='')
     host_ids = models.CharField(max_length=300, default='')
     share_count = models.IntegerField(default=0)
