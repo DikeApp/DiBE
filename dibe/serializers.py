@@ -6,7 +6,6 @@ from rest_framework.validators import UniqueValidator
 class UserSerializer(serializers.ModelSerializer):
 
     username = serializers.CharField(
-                required=True,
                 validators=[UniqueValidator(
                             queryset=User.objects.all(),
                             message="This username is already used!"
