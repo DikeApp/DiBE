@@ -2,6 +2,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
 from .models import User, ShareRide, HostRide
 from .serializers import UserSerializer, ShareRideSerializer
 from .serializers import HostRideSerializer
@@ -25,11 +26,12 @@ class UserList(APIView):
         return Response(serializer.data)
 
 
-class UserSignUp(APIView):
-    def post(self, request, format=None):
-        """
-        Creat new user
-        """
+@api_view(['POST'])
+def UserSignUp(request, format=None):
+    """
+    Create new user
+    """
+    if request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
