@@ -159,9 +159,9 @@ def validate_min_length(value):
 
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=300)
+    username = models.CharField(max_length=300, default='')
                                 # validators=[validate_min_length])
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=50, default='')
                                 # validators=[validate_min_length])
     share_ids = models.CharField(max_length=300, default='')
     host_ids = models.CharField(max_length=300, default='')
