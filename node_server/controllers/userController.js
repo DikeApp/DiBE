@@ -16,3 +16,27 @@ exports.user_list = function(req, res, next) {
     });
   // res.send('User list');
 }
+
+exports.user_sign_up = function(req, res, next) {
+
+  var newUser = new User(
+    {
+      username: req.body.username,
+      password: req.body.password,
+    }
+  );
+
+  newUser.save(function(err) {
+    if (err) {
+      res.send({
+        success: false,
+        code: 400,
+      });
+      return next(err);
+    }
+    res.send({
+      success: true,
+      code: 200,
+    });
+  });
+}
