@@ -9,10 +9,10 @@ exports.user_list = function(req, res, next) {
         return next(err);
       }
       res.send({
-        success: True,
+        success: true,
         code: 200,
         data: user_list,
       })
     });
-
+  // res.send('User list');
 }
