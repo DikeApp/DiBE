@@ -30,6 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'dike-prod.herokuapp.com',
     'localhost',
+    'dike.ednj3cuntj.us-east-1.elasticbeanstalk.com',
 ]
 
 
