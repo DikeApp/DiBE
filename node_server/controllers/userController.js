@@ -31,6 +31,7 @@ exports.user_sign_up = function(req, res, next) {
       res.send({
         success: false,
         code: 400,
+        err: err,
       });
       return next(err);
     }
