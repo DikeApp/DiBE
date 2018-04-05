@@ -8,15 +8,15 @@ userSchema = new Schema(
     username: {
       type: String,
       required: true,
-      maxLength: 100,
-      minLength: 8,
+      maxlength: 100,
+      minlength: [8, 'Username should be longer than 8 characters'],
       unique: true,
     },
     password: {
       type: String,
       required: true,
-      maxLength: 50,
-      minLength: 8,
+      maxlength: 50,
+      minlength: [8, 'Password should be longer than 8 characters'],
     },
   }
 );

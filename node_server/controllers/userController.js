@@ -26,19 +26,30 @@ exports.user_sign_up = function(req, res, next) {
     }
   );
 
-  newUser.save(function(err) {
+  newUser.validate(function(err) {
     if (err) {
       res.send({
         success: false,
-        code: 400,
+        code: 402,
         err: err,
       });
-      return next(err);
+      return false;
+    } else {
+      newUser.save(function(err) {
+        if (err) {
+          res.send({
+            success: false,
+            code: 400,
+            err: err,
+          });
+          return next(err);
+        }
+        res.send({
+          success: true,
+          code: 200,
+          user_id: newUser._id,
+        });
+      });
     }
-    res.send({
-      success: true,
-      code: 200,
-      user_id: newUser._id,
-    });
   });
 }
