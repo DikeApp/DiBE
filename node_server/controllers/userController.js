@@ -37,6 +37,7 @@ exports.user_sign_up = function(req, res, next) {
     res.send({
       success: true,
       code: 200,
+      user_id: newUser._id,
     });
   });
 }
