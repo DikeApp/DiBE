@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var bcrypt = require('bcrypt-nodejs');
 
 // Display all user
 exports.user_list = function(req, res, next) {
@@ -22,7 +23,7 @@ exports.user_sign_up = function(req, res, next) {
   var newUser = new User(
     {
       username: req.body.username,
-      password: req.body.password,
+      password: bcrypt.hashSync(req.body.password),
     }
   );
 
