@@ -103,7 +103,8 @@ exports.user_log_in = function(req, res, next) {
           });
           res.json({
             success: true,
-            token: 'JWT ' + token,
+            code: 200,
+            token: token,
           });
         } else {
           res.send({
