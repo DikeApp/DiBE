@@ -5,10 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var secret = require('config/secret');
+
+var secret = require('./config/secret');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var protect = require('./routes/protect')
 
 var app = express();
 
@@ -27,6 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+
+//Add middleware for protected routes
+app.use('/protect', protect);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
