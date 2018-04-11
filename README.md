@@ -1,10 +1,9 @@
 # DiBE
 Diké Back-End
 
-Server Side Programming: Python 3.4.
-Database: Relational Database - MySQL
+Server Side Programming: NodeJs
+Database: MongoDB
 App Hosting - Heroku
-Python Frameworks - Django
 CI Test - SemaphoreCI
 
 Semaphore Badge:
