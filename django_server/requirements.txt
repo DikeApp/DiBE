@@ -32,5 +32,5 @@ six==1.11.0
 template-remover==0.1.9
 termcolor==1.1.0
 uritemplate==3.0.0
-urllib3==1.22
+urllib3==1.26.5
 wrapt==1.10.11
